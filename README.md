@@ -25,7 +25,13 @@ This will return the 3 newest reviews in the collection. Some other possibilitie
 
 ## ViewComposer
 
-If you want to show some statistics about the reviews in your project, you can add the `ReviewsComposer` class as a viewcomposer to your specific component. This will expose a `$reviews` variable to your blade component with a few useful statistics. For example:
+If you want to show some statistics about the reviews in your project, you can add the `ReviewsComposer` class as a viewcomposer to your specific component. You can add this in your serviceprovider:
+
+```php
+View::composer('rapidez::layouts.footer', ReviewsComposer::class);
+```
+
+This will expose a `$reviews` variable to your blade component with a few useful statistics. For example:
 
 ```
 Our customers give us a {{ $reviews['score'] }}/10 across {{ $reviews['count'] }} reviews.
