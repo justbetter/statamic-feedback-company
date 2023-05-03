@@ -25,7 +25,14 @@ This will return the 3 newest reviews in the collection. Some other possibilitie
 
 ## ViewComposer
 
-If you want to show some statistics about the reviews in your project, you can add the `ReviewsComposer` class as a viewcomposer to your specific component. This will expose a `$reviews` variable to your blade component with a few useful statistics.
+If you want to show some statistics about the reviews in your project, you can add the `ReviewsComposer` class as a viewcomposer to your specific component. This will expose a `$reviews` variable to your blade component with a few useful statistics. For example:
+
+```
+Our customers give us a {{ $reviews['score'] }}/10 across {{ $reviews['count'] }} reviews.
+{{ $reviews['percentage'] }}% of reviews recommend us.
+```
+
+You can also use `$reviews['scores'][7]` to display how many reviews have a 7/10 rating.
 
 ## Publishables
 
