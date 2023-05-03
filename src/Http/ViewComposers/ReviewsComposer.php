@@ -10,7 +10,7 @@ class ReviewsComposer
 {
     public function compose(View $view): void
     {
-        $reviews = Cache::remember('feedbackcompany-reviews-data', now()->addHour(), function () use ($view) {
+        $reviews = Cache::remember('feedback-company-data', now()->addHour(), function () use ($view) {
             $count = Entry::query()->where('collection', 'reviews')->count();
             $score = $view->globals->reviews->average_score;
             $percentage = $view->globals->reviews->recommendation_percentage;

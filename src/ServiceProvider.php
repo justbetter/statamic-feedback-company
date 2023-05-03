@@ -26,7 +26,7 @@ class ServiceProvider extends AddonServiceProvider
 
     public function bootConfig(): static
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/feedbackcompany-reviews.php', 'feedbackcompany-reviews');
+        $this->mergeConfigFrom(__DIR__.'/../config/feedback-company.php', 'feedback-company');
 
         return $this;
     }
@@ -38,7 +38,7 @@ class ServiceProvider extends AddonServiceProvider
                 __DIR__.'/../resources' => resource_path('/'),
             ], 'blueprints');
             $this->publishes([
-                __DIR__.'/../config/feedbackcompany-reviews.php' => config_path('feedbackcompany-reviews.php'),
+                __DIR__.'/../config/feedback-company.php' => config_path('feedback-company.php'),
             ], 'config');
         }
 

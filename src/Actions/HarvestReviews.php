@@ -27,15 +27,15 @@ class HarvestReviews
         }
 
         return Cache::remember('fbc_authcode', now()->addDays(60), function () {
-            if(!config('feedbackcompany-reviews.fb_client_id') || !config('feedbackcompany-reviews.fb_client_secret')) {
+            if(!config('feedback-company.fb_client_id') || !config('feedback-company.fb_client_secret')) {
                 throw new Exception('You need to configure the client ID and client secret tokens to use this API.');
             }
             
             info('Generating new token...');
 
             $response = Http::get('https://www.feedbackcompany.com/api/v2/oauth2/token', [
-                'client_id' => config('feedbackcompany-reviews.fb_client_id'),
-                'client_secret' => config('feedbackcompany-reviews.fb_client_secret'),
+                'client_id' => config('feedback-company.fb_client_id'),
+                'client_secret' => config('feedback-company.fb_client_secret'),
                 'grant_type' => 'authorization_code',
             ])->throw();
             if ($response->json('error')) {
@@ -108,7 +108,7 @@ class HarvestReviews
 
         collect($responseJson['reviews'])->each(function ($review) {
             $score = round($review['total_score'] * 2);
-            $recommends = $review['recommends'] == config('feedbackcompany-reviews.recommended_value');
+            $recommends = $review['recommends'] == config('feedback-company.recommended_value');
 
             // Update running totals
             $this->totalScore += $score;
@@ -161,6 +161,6 @@ class HarvestReviews
         $set->localizations()['default']->recommendation_percentage = $recommendation_percentage;
         $set->save();
 
-        Cache::forget('feedbackcompany-reviews-data');
+        Cache::forget('feedback-company-data');
     }
 }

@@ -13,14 +13,14 @@ Harvests reviews from Feedback Company using their API and saves them in a Stata
 If you don't want to use the statamic API, this addon provides a basic API with which you can retrieve the harvested reviews by doing a GET request to the following endpoint:
 
 ```
-/api/feedbackcompany-reviews
+/api/feedback-company
 ```
 
 This will return the 3 newest reviews in the collection. Some other possibilities:
 
 ```
-/api/feedbackcompany-reviews?page=1&count=5
-/api/feedbackcompany-reviews?count=5&minscore=2&maxscore=5
+/api/feedback-company?page=1&count=5
+/api/feedback-company?count=5&minscore=2&maxscore=5
 ```
 
 ## ViewComposer
