@@ -1,10 +1,10 @@
-# Statamic FeedbackCompany review sync
+# Statamic Feedback Company
 
 Harvests reviews from Feedback Company using their API and saves them in a Statamic collection.
 
 ## How to Use
 
-- Set up the FB_CLIENT_ID and FB_CLIENT_SECRET values in your .env
+- Set up the `FB_CLIENT_ID` and `FB_CLIENT_SECRET` values in your `.env`
 - Publish the blueprints (see below)
 - Now you can harvest the reviews with `php artisan reviews:harvest`
 
@@ -13,14 +13,14 @@ Harvests reviews from Feedback Company using their API and saves them in a Stata
 If you don't want to use the statamic API, this addon provides a basic API with which you can retrieve the harvested reviews by doing a GET request to the following endpoint:
 
 ```
-your://url.here/api/feedbackcompany-reviews
+/api/feedbackcompany-reviews
 ```
 
 This will return the 3 newest reviews in the collection. Some other possibilities:
 
 ```
-.../api/feedbackcompany-reviews?page=1&count=5
-.../api/feedbackcompany-reviews?count=5&minscore=2&maxscore=5
+/api/feedbackcompany-reviews?page=1&count=5
+/api/feedbackcompany-reviews?count=5&minscore=2&maxscore=5
 ```
 
 ## ViewComposer

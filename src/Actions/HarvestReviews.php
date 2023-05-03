@@ -37,9 +37,7 @@ class HarvestReviews
                 'client_id' => config('feedbackcompany-reviews.fb_client_id'),
                 'client_secret' => config('feedbackcompany-reviews.fb_client_secret'),
                 'grant_type' => 'authorization_code',
-            ]);
-
-            $response->throw();
+            ])->throw();
             if ($response->json('error')) {
                 throw new BadRequestHttpException('API returned error');
             }
