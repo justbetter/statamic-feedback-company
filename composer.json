@@ -2,6 +2,10 @@
     "name": "justbetter/statamic-feedback-company",
     "type": "package",
     "description": "Harvest FeedbackCompany reviews into a Statamic collection",
+    "require": {
+        "laravel/framework": "*",
+        "statamic/cms": "*"
+    },
     "autoload": {
         "psr-4": {
             "JustBetter\\StatamicFeedbackCompany\\": "src"
