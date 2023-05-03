@@ -1,0 +1,93 @@
+sections:
+  main:
+    display: Main
+    fields:
+      -
+        handle: title
+        field:
+          type: text
+          required: true
+          validate:
+            - required
+      -
+        handle: product
+        field:
+          input_type: text
+          antlers: false
+          display: Product
+          type: text
+          icon: text
+          listable: hidden
+          instructions_position: above
+          visibility: visible
+      -
+        handle: recommends
+        field:
+          default: false
+          display: Recommends
+          type: toggle
+          icon: toggle
+          listable: hidden
+          instructions_position: above
+          visibility: visible
+      -
+        handle: total_score
+        field:
+          display: 'Total score'
+          type: integer
+          icon: integer
+          listable: hidden
+          instructions_position: above
+          visibility: visible
+      -
+        handle: name
+        field:
+          input_type: text
+          antlers: false
+          display: Name
+          type: text
+          icon: text
+          listable: hidden
+          instructions_position: above
+          visibility: visible
+      -
+        handle: questions
+        field:
+          mode: dynamic
+          display: Questions
+          type: array
+          icon: array
+          listable: hidden
+          instructions_position: above
+          visibility: visible
+  sidebar:
+    display: Sidebar
+    fields:
+      -
+        handle: review_date
+        field:
+          mode: single
+          time_enabled: false
+          time_seconds_enabled: false
+          full_width: false
+          inline: false
+          columns: 1
+          rows: 1
+          display: 'Review date'
+          type: date
+          icon: date
+          listable: hidden
+          instructions_position: above
+          visibility: visible
+      -
+        handle: slug
+        field:
+          type: slug
+          localizable: true
+          display: 'Review ID'
+          instructions_position: above
+          listable: hidden
+          visibility: visible
+          from: title
+          generate: true
+title: Review

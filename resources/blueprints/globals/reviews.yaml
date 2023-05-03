@@ -1,0 +1,22 @@
+sections:
+  main:
+    display: Main
+    fields:
+      -
+        handle: average_score
+        field:
+          display: 'Average score'
+          type: float
+          icon: float
+          listable: hidden
+          instructions_position: above
+          visibility: visible
+      -
+        handle: recommendation_percentage
+        field:
+          display: 'Recommendation percentage'
+          type: float
+          icon: float
+          listable: hidden
+          instructions_position: above
+          visibility: visible
