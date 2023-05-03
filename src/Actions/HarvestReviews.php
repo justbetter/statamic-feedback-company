@@ -12,13 +12,11 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class HarvestReviews
 {
-    private $reviewCollection;
+    protected $reviewCollection;
 
-    private $totalScore = 0;
-
-    private $totalCount = 0;
-
-    private $totalRecommends = 0;
+    protected $totalScore = 0;
+    protected $totalCount = 0;
+    protected $totalRecommends = 0;
 
     public function getToken(bool $new = false): string
     {
@@ -46,7 +44,7 @@ class HarvestReviews
         });
     }
 
-    private function createIfNecessary(array $data, int $reviewId, string $storeCode): StatamicEntry
+    protected function createIfNecessary(array $data, int $reviewId, string $storeCode): StatamicEntry
     {
         $entry = $this->reviewCollection->get($reviewId);
         if ($entry) {
@@ -73,7 +71,7 @@ class HarvestReviews
         info('Finished retrieving reviews.');
     }
 
-    private function fetchPage(int $start, int $pageSize, string $token, int $errorCount)
+    protected function fetchPage(int $start, int $pageSize, string $token, int $errorCount)
     {
         $response = Http::withHeaders([
             'Authorization' => 'Bearer '.$token,
@@ -143,7 +141,7 @@ class HarvestReviews
         $this->fetchPage($start + $pageSize, $pageSize, $token, $errorCount);
     }
 
-    private function updateTotals()
+    protected function updateTotals()
     {
         if ($this->totalCount == 0) {
             return;
