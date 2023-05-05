@@ -4,7 +4,6 @@ namespace JustBetter\StatamicFeedbackCompany\Actions;
 
 use Exception;
 use Illuminate\Http\Client\Pool;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Statamic\Entries\Entry as StatamicEntry;
@@ -93,16 +92,16 @@ class HarvestReviews
         });
 
         foreach(array_merge([$firstResponse], $responses) as $response) {
-            $this->saveReviews(Collect($response->json('reviews')));
+            $this->saveReviews($response->json('reviews'));
         }
 
         $this->updateTotals();
         info('Finished retrieving reviews.');
     }
 
-    protected function saveReviews(Collection $reviews)
+    protected function saveReviews(array $reviews)
     {
-        $reviews->each(function ($review) {
+        foreach($reviews as $review) {
             $score = round($review['total_score'] * 2);
             $recommends = $review['recommends'] == config('feedback-company.recommended_value');
 
@@ -127,7 +126,7 @@ class HarvestReviews
                 'questions' => $questions,
                 'product' => $review['product'],
             ], $review['id'], 'default');
-        });
+        }
     }
 
     protected function updateTotals()
