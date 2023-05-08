@@ -12,8 +12,8 @@ class ReviewsComposer
     {
         $reviews = Cache::remember('feedback-company-data', now()->addHour(), function () use ($view) {
             $count = Entry::query()->where('collection', 'reviews')->count();
-            $score = $view->globals->reviews->average_score;
-            $percentage = $view->globals->reviews->recommendation_percentage;
+            $score = $view->globals->reviews->average_score ?? null;
+            $percentage = $view->globals->reviews->recommendation_percentage ?? null;
 
             $counts = [];
             for($i = 1; $i <= 10; $i++) {

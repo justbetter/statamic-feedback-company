@@ -10,7 +10,7 @@ composer require justbetter/statamic-feedback-company
 
 ## How to Use
 
-- Set up the `FB_CLIENT_ID` and `FB_CLIENT_SECRET` values in your `.env`
+- Set up the `FEEDBACKCOMPANY_CLIENT_ID` and `FEEDBACKCOMPANY_CLIENT_SECRET` values in your `.env`
 - Publish the blueprints (see below), then create the `Reviews` collection & `Reviews` global
 - Now you can harvest the reviews with `php artisan reviews:harvest`
 

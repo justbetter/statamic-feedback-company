@@ -28,15 +28,15 @@ class HarvestReviews
         }
 
         return Cache::remember('fbc_authcode', now()->addDays(60), function () {
-            if(!config('feedback-company.fb_client_id') || !config('feedback-company.fb_client_secret')) {
+            if(!config('feedback-company.client_id') || !config('feedback-company.client_secret')) {
                 throw new Exception('You need to configure the client ID and client secret tokens to use this API.');
             }
 
             info('Generating new token...');
 
             $response = Http::get(config('feedback-company.api_url') . '/oauth2/token', [
-                'client_id' => config('feedback-company.fb_client_id'),
-                'client_secret' => config('feedback-company.fb_client_secret'),
+                'client_id' => config('feedback-company.client_id'),
+                'client_secret' => config('feedback-company.client_secret'),
                 'grant_type' => 'authorization_code',
             ])->throw();
             if ($response->json('error')) {
