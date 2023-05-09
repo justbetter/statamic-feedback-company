@@ -1,0 +1,33 @@
+{
+    "name": "justbetter/statamic-feedback-company",
+    "type": "package",
+    "description": "Harvest FeedbackCompany reviews into a Statamic collection",
+    "require": {
+        "laravel/framework": "*",
+        "statamic/cms": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "JustBetter\\StatamicFeedbackCompany\\": "src"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jade Geels"
+        }
+    ],
+    "support": {
+        "email": "jade@justbetter.nl"
+    },
+    "extra": {
+        "statamic": {
+            "name": "FeedbackCompany Reviews",
+            "description": "Harvest FeedbackCompany reviews into a Statamic collection"
+        },
+        "laravel": {
+            "providers": [
+                "JustBetter\\StatamicFeedbackCompany\\ServiceProvider"
+            ]
+        }
+    }
+}
