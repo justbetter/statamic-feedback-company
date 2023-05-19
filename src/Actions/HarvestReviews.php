@@ -113,7 +113,7 @@ class HarvestReviews
             }
 
             $questions = collect($review['questions'])->mapWithKeys(fn ($question) => [
-                $question['question_id'] => $question['value']
+                $question['type'] => $question['value']
             ]);
 
             // Create statamic entry if it doesn't already exist (assume reviews don't get updated)

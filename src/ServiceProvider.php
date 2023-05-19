@@ -3,6 +3,7 @@
 namespace JustBetter\StatamicFeedbackCompany;
 
 use JustBetter\StatamicFeedbackCompany\Commands\HarvestReviewsCommand;
+use JustBetter\StatamicFeedbackCompany\Commands\RemoveReviewsCommand;
 use Statamic\Providers\AddonServiceProvider;
 
 class ServiceProvider extends AddonServiceProvider
@@ -19,6 +20,7 @@ class ServiceProvider extends AddonServiceProvider
     {
         $this->commands([
             HarvestReviewsCommand::class,
+            RemoveReviewsCommand::class,
         ]);
 
         return $this;
