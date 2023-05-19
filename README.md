@@ -46,6 +46,16 @@ Our customers give us a {{ $reviews['score'] }}/10 across {{ $reviews['count'] }
 
 You can also use `$reviews['scores'][7]` to display how many reviews have a 7/10 rating.
 
+## Tag
+
+We integrated a Statamic Tag called `Reviews` which will allow you to get some basic data from the reviews like ratings and review content.
+
+Blade example:
+
+```php
+Statamic::tag('reviews:get_rating_data')->fetch();
+```
+
 ## Publishables
 
 You can publish all of the publishables with:
