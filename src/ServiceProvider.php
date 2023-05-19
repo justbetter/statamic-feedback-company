@@ -4,10 +4,15 @@ namespace JustBetter\StatamicFeedbackCompany;
 
 use JustBetter\StatamicFeedbackCompany\Commands\HarvestReviewsCommand;
 use JustBetter\StatamicFeedbackCompany\Commands\RemoveReviewsCommand;
+use JustBetter\StatamicFeedbackCompany\Tags\Reviews;
 use Statamic\Providers\AddonServiceProvider;
 
 class ServiceProvider extends AddonServiceProvider
 {
+    protected $tags = [
+        Reviews::class
+    ];
+
     public function bootAddon()
     {
         $this->bootCommands()
