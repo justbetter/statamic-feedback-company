@@ -40,14 +40,14 @@ class Reviews extends Tags
         return Cache::remember('feedback-company-rating-data', now()->addHour(), function () {
             $starCounts = [];
 
-            for ($i = 1; $i <= 5; $i++) {
-                $minScore = (($i - 1) * 20) / 10;
-                $maxScore = ($i * 20) / 10;
+            for ($star = 1; $star <= 5; $star++) {
+                $maxScore = $star * 2;
+                $minScore = $maxScore - 2;
                 $reviewsCount = EntryFacade::query()
                     ->where('collection', 'reviews')
                     ->whereBetween('total_score', [$minScore, $maxScore])
                     ->count();
-                $starCounts[$i] = $reviewsCount;
+                $starCounts[$star] = $reviewsCount;
             }
 
             return $starCounts;
