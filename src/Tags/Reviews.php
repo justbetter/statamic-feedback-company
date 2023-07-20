@@ -42,7 +42,7 @@ class Reviews extends Tags
 
             for ($star = 1; $star <= 5; $star++) {
                 $maxScore = $star * 2;
-                $minScore = $maxScore - 2;
+                $minScore = $maxScore - 1;
                 $reviewsCount = EntryFacade::query()
                     ->where('collection', 'reviews')
                     ->whereBetween('total_score', [$minScore, $maxScore])
