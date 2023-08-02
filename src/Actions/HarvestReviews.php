@@ -81,17 +81,20 @@ class HarvestReviews
 
         $total = $firstResponse->json('count')['total'];
 
-        $responses = Http::pool(function (Pool $pool) use ($total, $pageSize, $auth) {
-            foreach (range($pageSize, $total, $pageSize) as $page) {
-                $pools[] = $pool->withHeaders($auth)->get(config('feedback-company.api_url') . '/review', [
-                    'limit' => $pageSize,
-                    'start' => $page,
-                ]);
-            }
-            return $pools;
-        });
+        if($total > $pageSize) {
+            $responses = Http::pool(function (Pool $pool) use ($total, $pageSize, $auth) {
+                $pageRange = $total > $pageSize * 2 ? range($pageSize, $total, $pageSize) : [ $pageSize ];
+                foreach ($pageRange as $page) {
+                    $pools[] = $pool->withHeaders($auth)->get(config('feedback-company.api_url') . '/review', [
+                        'limit' => $pageSize,
+                        'start' => $page,
+                    ]);
+                }
+                return $pools;
+            });
+        }
 
-        foreach(array_merge([$firstResponse], $responses) as $response) {
+        foreach(array_merge([$firstResponse], $responses ?? []) as $response) {
             $this->saveReviews($response->json('reviews'));
         }
 
