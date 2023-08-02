@@ -94,7 +94,7 @@ class HarvestReviews
             });
         }
 
-        foreach(array_merge([$firstResponse], $responses) as $response) {
+        foreach(array_merge([$firstResponse], $responses ?? []) as $response) {
             $this->saveReviews($response->json('reviews'));
         }
 
