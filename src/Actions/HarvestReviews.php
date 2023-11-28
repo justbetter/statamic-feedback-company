@@ -79,7 +79,12 @@ class HarvestReviews
             'start' => 0,
         ]);
 
-        $total = $firstResponse->json('count')['total'];
+        $total = $firstResponse->json('count')['total'] ?? false;
+
+        if (!$total) {
+            info('No totals found, aborting..');
+            return;
+        }
 
         if($total > $pageSize) {
             $responses = Http::pool(function (Pool $pool) use ($total, $pageSize, $auth) {
