@@ -107,9 +107,9 @@ class HarvestReviews
         info('Finished retrieving reviews.');
     }
 
-    protected function saveReviews(array $reviews)
+    protected function saveReviews(?array $reviews)
     {
-        foreach($reviews as $review) {
+        foreach($reviews ?? [] as $review) {
             $score = round($review['total_score'] * 2);
             $recommends = $review['recommends'] == config('feedback-company.recommended_value');
 
