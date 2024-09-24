@@ -1,3 +1,7 @@
+<a href="https://github.com/justbetter/statamic-feedback-company" title="JustBetter">
+    <img src="./art/banner.png" alt="Banner">
+</a>
+
 # Statamic Feedback Company
 
 Harvests reviews from Feedback Company using their API and saves them in a Statamic collection.
