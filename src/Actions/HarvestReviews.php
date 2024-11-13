@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Http;
 use Statamic\Entries\Entry as StatamicEntry;
 use Statamic\Facades\Entry;
 use Statamic\Facades\GlobalSet;
+use Statamic\Facades\Site;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class HarvestReviews
@@ -133,7 +134,7 @@ class HarvestReviews
                 'name' => $review['client']['name'],
                 'questions' => $questions,
                 'product' => $review['product'],
-            ], $review['id'], \Statamic\Facades\Site::default()->handle());
+            ], $review['id'], Site::default()->handle());
         }
     }
 
@@ -143,7 +144,7 @@ class HarvestReviews
             return;
         }
 
-        $site = \Statamic\Facades\Site::default()->handle();
+        $site = Site::default()->handle();
 
         $average_score = round($this->totalScore / $this->totalCount, 1);
         $recommendation_percentage = round($this->totalRecommends / $this->totalCount * 100);
