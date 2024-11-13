@@ -133,7 +133,7 @@ class HarvestReviews
                 'name' => $review['client']['name'],
                 'questions' => $questions,
                 'product' => $review['product'],
-            ], $review['id'], 'default');
+            ], $review['id'], \Statamic\Facades\Site::default()->handle());
         }
     }
 
@@ -143,16 +143,18 @@ class HarvestReviews
             return;
         }
 
+        $site = \Statamic\Facades\Site::default()->handle();
+
         $average_score = round($this->totalScore / $this->totalCount, 1);
         $recommendation_percentage = round($this->totalRecommends / $this->totalCount * 100);
 
         $set = GlobalSet::findByHandle('reviews');
-        if (! $set || ! $set->localizations()['default']) {
+        if (! $set || ! $set->localizations()[$site]) {
             return;
         }
 
-        $set->localizations()['default']->average_score = $average_score;
-        $set->localizations()['default']->recommendation_percentage = $recommendation_percentage;
+        $set->localizations()[$site]->average_score = $average_score;
+        $set->localizations()[$site]->recommendation_percentage = $recommendation_percentage;
         $set->save();
 
         Cache::forget('feedback-company-data');
