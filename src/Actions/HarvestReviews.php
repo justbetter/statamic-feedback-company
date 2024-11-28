@@ -132,7 +132,7 @@ class HarvestReviews
                 'total_score' => $score,
                 'recommends' => $recommends,
                 'name' => $review['client']['name'],
-                'questions' => $questions,
+                'questions' => $questions->all(),
                 'product' => $review['product'],
             ], $review['id'], Site::default()->handle());
         }
